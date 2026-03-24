@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Your Name | Independent Consultant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --warm-white: #FFFFFF;
+    --ink: #000000;
+    --mid: #3A3A3A;
+    --light: #7A9EAD;
+    --accent: #91853C;
+    --rule: #C5D9E2;
+    --teal: #6BA4B8;
+    --teal-light: #EAF3F7;
+    --teal-dark: #4A8299;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 18px; scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm-white);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--warm-white);
+    border-bottom: 2px solid var(--teal);
+    padding: 0 5vw;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-weight: 700;
+    color: var(--teal); text-decoration: none;
+  }
+  .nav-links { list-style: none; display: flex; gap: 2.5rem; }
+  .nav-links a {
+    font-size: 0.82rem; font-weight: 400;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--mid); text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+
+  /* HERO */
+  .hero {
+    min-height: 88vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 10vh 5vw 8vh;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -10%; right: -5%;
+    width: 45vw; height: 45vw; border-radius: 50%;
+    background: radial-gradient(circle, var(--teal-light) 0%, transparent 70%);
+    opacity: 0.6; pointer-events: none;
+  }
+  .hero-label {
+    font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1.5rem; font-weight: 500;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 6vw, 5.2rem);
+    line-height: 1.12; font-weight: 700; max-width: 14ch; margin-bottom: 2rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--teal); }
+  .hero-body {
+    max-width: 52ch; font-size: 1.1rem; color: var(--mid);
+    margin-bottom: 2.5rem; line-height: 1.75;
+  }
+  .hero-cta { }
+
+  /* BUTTONS */
+  .btn {
+    display: inline-block; padding: 0.85em 2em;
+    background: var(--teal-dark); color: var(--warm-white);
+    font-family: 'DM Sans', sans-serif; font-size: 0.85rem;
+    font-weight: 500; letter-spacing: 0.05em;
+    text-decoration: none; text-transform: uppercase; transition: background 0.2s;
+  }
+  .btn:hover { background: #3A7A96; }
+  .btn-outline {
+    background: transparent; color: var(--teal-dark);
+    border: 1.5px solid var(--teal-dark); margin-left: 1rem;
+  }
+  .btn-outline:hover { background: var(--teal-dark); color: var(--warm-white); }
+  .btn-small {
+    display: inline-block; font-size: 0.75rem; padding: 0.5em 1.2em;
+    background: var(--teal-dark); color: white; text-decoration: none;
+    font-family: 'DM Sans', sans-serif; font-weight: 500;
+    letter-spacing: 0.05em; text-transform: uppercase; transition: background 0.2s;
+  }
+  .btn-small:hover { background: #3A7A96; }
+
+  /* SHARED SECTION STYLES */
+  section { padding: 7rem 5vw; }
+  section + section { border-top: 1px solid var(--rule); }
+  .section-label {
+    font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 1.2rem;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700; line-height: 1.2; margin-bottom: 1.5rem;
+  }
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; font-weight: 700; margin-bottom: 0.6rem;
+  }
+
+  /* SERVICES */
+  .services { background: var(--teal-light); }
+  .services-intro { max-width: 60ch; margin-bottom: 4rem; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    border-top: 1px solid var(--rule);
+  }
+  .service-item {
+    padding: 2.5rem 2rem 2.5rem 0;
+    border-bottom: 1px solid var(--rule);
+    border-right: 1px solid var(--rule);
+  }
+  .service-num {
+    font-family: 'Playfair Display', serif; font-size: 0.75rem;
+    color: var(--teal); margin-bottom: 1rem; letter-spacing: 0.08em;
+  }
+  .service-item p { font-size: 0.95rem; color: var(--mid); line-height: 1.65; }
+
+  /* ABOUT */
+  .about-inner { display: grid; grid-template-columns: 1fr 1.5fr; gap: 6vw; align-items: start; }
+  .about-img-wrap { position: relative; }
+  .about-img-placeholder {
+    width: 100%; aspect-ratio: 3/4;
+    background: var(--teal-light); border: 2px dashed var(--teal);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.6rem; font-size: 0.82rem; color: var(--teal); opacity: 0.7;
+  }
+  .about-img-placeholder::before { content: '📷'; font-size: 2rem; }
+  .about-img-wrap::after {
+    content: '';
+    position: absolute; top: 1.2rem; left: 1.2rem; right: -1.2rem; bottom: -1.2rem;
+    border: 2px solid var(--teal); z-index: -1; opacity: 0.35;
+  }
+  .about-text p { color: var(--mid); margin-bottom: 1.2rem; font-size: 1rem; }
+  .about-links { margin-top: 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .about-links a {
+    font-size: 0.85rem; font-weight: 500; color: var(--ink);
+    text-decoration: underline; text-underline-offset: 4px; transition: color 0.2s;
+  }
+  .about-links a:hover { color: var(--teal); }
+
+  /* HOW I WORK */
+  .how { background: var(--teal-light); }
+  .how-inner { display: grid; grid-template-columns: 1fr 2fr; gap: 6vw; align-items: start; }
+  .how-sticky { position: sticky; top: 90px; }
+  .how-sticky p { color: var(--mid); margin-top: 1rem; font-size: 0.97rem; line-height: 1.75; }
+  .how-item {
+    padding: 2.5rem 0; border-bottom: 1px solid var(--rule);
+    display: grid; grid-template-columns: 3rem 1fr; gap: 1.5rem; align-items: start;
+  }
+  .how-item:first-child { border-top: 1px solid var(--rule); }
+  .how-num {
+    font-family: 'Playfair Display', serif; font-size: 1.5rem;
+    font-weight: 700; color: var(--teal); line-height: 1; padding-top: 0.2rem;
+  }
+  .how-item p { color: var(--mid); font-size: 0.97rem; line-height: 1.7; margin-top: 0.5rem; }
+
+  /* TESTIMONIALS */
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2px; background: var(--rule); border: 2px solid var(--rule); margin-top: 3.5rem;
+  }
+  blockquote { background: var(--warm-white); padding: 2.5rem; }
+  blockquote p {
+    font-family: 'Libre Baskerville', serif; font-style: italic;
+    font-size: 1rem; line-height: 1.75; color: var(--ink); margin-bottom: 1.2rem;
+  }
+  .quote-attr {
+    font-size: 0.78rem; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--light);
+  }
+
+  /* CLIENTS */
+  .clients-inner { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4rem 6vw; margin-top: 3.5rem; }
+  .client-group h4 {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--rule);
+  }
+  .client-group ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+  .client-group li { font-size: 0.95rem; color: var(--mid); }
+
+  /* WRITING */
+  .writing { background: var(--teal-light); }
+  .posts { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2.5rem; margin-top: 3.5rem; }
+  .post { display: flex; flex-direction: column; gap: 0.8rem; }
+  .post-img {
+    width: 100%; aspect-ratio: 16/9;
+    background: var(--teal-light); border: 2px dashed var(--teal);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.4rem; color: var(--teal); font-size: 0.75rem; letter-spacing: 0.04em; opacity: 0.65;
+  }
+  .post-img::before { content: '🖼'; font-size: 1.4rem; }
+  .post-img::after { content: 'Add cover image'; }
+  .post-meta { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--light); }
+  .post h3 { font-size: 1.1rem; line-height: 1.35; }
+  .post h3 a { color: var(--ink); text-decoration: none; transition: color 0.2s; }
+  .post h3 a:hover { color: var(--teal); }
+  .post p { font-size: 0.9rem; color: var(--mid); line-height: 1.65; }
+
+  /* WORKSHOPS */
+  .workshops { background: var(--warm-white); }
+  .workshops-intro { max-width: 56ch; margin-bottom: 3.5rem; }
+  .workshops-intro p { color: var(--mid); font-size: 1rem; line-height: 1.75; margin-top: 1rem; }
+  .workshop-cards {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2px; background: var(--rule); border: 2px solid var(--rule); margin-bottom: 3rem;
+  }
+  .workshop-card {
+    background: var(--warm-white); padding: 2.5rem;
+    display: flex; flex-direction: column; gap: 0.8rem;
+  }
+  .workshop-tag {
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent);
+  }
+  .workshop-card h3 { font-size: 1.2rem; margin-bottom: 0; }
+  .workshop-card p { font-size: 0.92rem; color: var(--mid); line-height: 1.65; flex: 1; }
+  .workshop-meta { font-size: 0.8rem; color: var(--light); padding-top: 0.8rem; border-top: 1px solid var(--rule); }
+
+  /* RESOURCES */
+  .resources { background: var(--teal-light); }
+  .resources-intro { max-width: 56ch; margin-bottom: 3.5rem; }
+  .resources-intro p { color: var(--mid); font-size: 1rem; line-height: 1.75; margin-top: 1rem; }
+  .resource-cards {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem; margin-bottom: 3rem;
+  }
+  .resource-card {
+    background: var(--warm-white); border: 1px solid var(--rule);
+    padding: 2rem; display: flex; flex-direction: column; gap: 0.7rem; transition: box-shadow 0.2s;
+  }
+  .resource-card:hover { box-shadow: 0 4px 20px rgba(107,164,184,0.15); }
+  .resource-type { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); }
+  .resource-card h3 { font-size: 1.1rem; margin-bottom: 0; }
+  .resource-card p { font-size: 0.9rem; color: var(--mid); line-height: 1.6; flex: 1; }
+  .resource-price {
+    font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--ink);
+    padding-top: 0.8rem; border-top: 1px solid var(--rule);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  /* EMBED PLACEHOLDERS */
+  .embed-placeholder-block {
+    background: var(--teal-light); border: 2px dashed var(--teal);
+    padding: 3rem; text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+  }
+  .ep-icon { font-size: 2.2rem; opacity: 0.5; }
+  .embed-placeholder-block h4 {
+    font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--ink); margin-bottom: 0.3rem;
+  }
+  .embed-placeholder-block p { font-size: 0.85rem; color: var(--mid); max-width: 40ch; line-height: 1.6; }
+  .embed-placeholder-block code {
+    display: inline-block; background: white; border: 1px solid var(--rule);
+    padding: 0.4em 0.9em; font-size: 0.75rem; color: var(--teal-dark);
+    font-family: 'Courier New', monospace; margin-top: 0.5rem;
+  }
+
+  /* NEWSLETTER */
+  .newsletter { background: var(--ink); color: var(--warm-white); }
+  .newsletter .section-label { color: var(--accent); }
+  .newsletter h2 { color: var(--teal); max-width: 20ch; }
+  .newsletter > p {
+    color: rgba(255,255,255,0.7); max-width: 48ch;
+    margin-bottom: 2.5rem; font-size: 1rem; line-height: 1.7;
+  }
+  .newsletter-form { display: flex; gap: 0; max-width: 480px; }
+  .newsletter-form input {
+    flex: 1; padding: 0.9em 1.2em;
+    background: #1A1A1A; border: 1.5px solid #333;
+    color: var(--warm-white); font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    outline: none; transition: border-color 0.2s;
+  }
+  .newsletter-form input::placeholder { color: #555; }
+  .newsletter-form input:focus { border-color: var(--teal); }
+  .newsletter-form button {
+    padding: 0.9em 1.6em; background: var(--teal); border: none; color: white;
+    font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; transition: background 0.2s;
+  }
+  .newsletter-form button:hover { background: var(--teal-dark); }
+  .embed-note { font-size: 0.78rem; color: #444; margin-top: 1rem; }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink); padding: 3rem 5vw;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif; font-size: 1rem;
+    font-weight: 700; color: var(--teal); text-decoration: none;
+  }
+  .footer-links { list-style: none; display: flex; gap: 2rem; flex-wrap: wrap; }
+  .footer-links a {
+    font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase;
+    color: #888; text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--teal); }
+  .footer-copy { font-size: 0.78rem; color: #555; width: 100%; }
+
+
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .about-inner, .how-inner, .clients-inner { grid-template-columns: 1fr; }
+    .about-img-wrap { max-width: 280px; }
+    .how-sticky { position: static; }
+    .nav-links { display: none; }
+    .newsletter-form { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Your Name</a>
+  <ul class="nav-links">
+    <li><a href="#services">What I do</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#clients">Clients</a></li>
+    <li><a href="#workshops">Workshops</a></li>
+    <li><a href="#resources">Resources</a></li>
+    <li><a href="#writing">Writing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-label">Independent Consultant</p>
+  <h1>Your tagline goes <em>right here</em></h1>
+  <p class="hero-body">A sentence or two about who you are and what you do. Who you help, and why it matters. Keep it warm and direct — this is your first impression.</p>
+  <div class="hero-cta">
+    <a href="#contact" class="btn">Get in touch</a>
+    <a href="#services" class="btn btn-outline">What I do</a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-intro">
+    <p class="section-label">What I do</p>
+    <h2>Work with me if you want to…</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-item">
+      <p class="service-num">01</p>
+      <h3>See things clearly</h3>
+      <p>Get a fresh, expert perspective on your situation. I'll help you understand what's really going on before jumping to solutions.</p>
+    </div>
+    <div class="service-item">
+      <p class="service-num">02</p>
+      <h3>Define who you are</h3>
+      <p>You can't communicate well if you don't know what you stand for. I'll help you find your voice and make it consistent.</p>
+    </div>
+    <div class="service-item">
+      <p class="service-num">03</p>
+      <h3>Turn strategy into action</h3>
+      <p>Build a clear, realistic roadmap. Get hands-on support as you put plans into practice and adapt along the way.</p>
+    </div>
+    <div class="service-item">
+      <p class="service-num">04</p>
+      <h3>Centre your audience</h3>
+      <p>Create work based on what your audience actually needs — not just what you want to say. I'll help you stay honest.</p>
+    </div>
+    <div class="service-item">
+      <p class="service-num">05</p>
+      <h3>Set a clear direction</h3>
+      <p>Define what success looks like and build a shared understanding of where you're going and why.</p>
+    </div>
+    <div class="service-item">
+      <p class="service-num">06</p>
+      <h3>Do better, not more</h3>
+      <p>Stop adding to the pile. Focus on quality, reduce waste, and improve your results without burning out.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-img-wrap">
+      <div class="about-img-placeholder">Add your photo here</div>
+    </div>
+    <div class="about-text">
+      <p class="section-label">About me</p>
+      <h2>A little about who I am</h2>
+      <p>I'm an independent consultant based in [City]. I've been doing this work since [year], starting in [context] before going independent in [year] to focus on the clients and projects I care most about.</p>
+      <p>I work best with organisations that want to do things properly — not just quickly. I care about the craft of the work and the people it affects.</p>
+      <p>Outside of work, you'll find me [something human and specific about you].</p>
+      <div class="about-links">
+        <a href="#">My full story →</a>
+        <a href="#">My principles →</a>
+        <a href="#">LinkedIn →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW I WORK -->
+<section class="how">
+  <div class="how-inner">
+    <div class="how-sticky">
+      <p class="section-label">How I work</p>
+      <h2>Three ways to work together</h2>
+      <p>Whether you want me to lead, guide, or simply equip you — there's a way to work together that fits.</p>
+    </div>
+    <div class="how-items">
+      <div class="how-item">
+        <span class="how-num">1</span>
+        <div>
+          <h3>Projects</h3>
+          <p>Commission me to do a project for you. I lead the work, with lots of input and collaboration from you and your team throughout.</p>
+        </div>
+      </div>
+      <div class="how-item">
+        <span class="how-num">2</span>
+        <div>
+          <h3>Mentoring &amp; coaching</h3>
+          <p>You do the work; I guide you through it. I'm there to offer advice, make recommendations, and help you through the sticky moments.</p>
+        </div>
+      </div>
+      <div class="how-item">
+        <span class="how-num">3</span>
+        <div>
+          <h3>Templates &amp; toolkits</h3>
+          <p>Tried-and-tested frameworks and templates you can use yourself. Some are free, some are paid. Built from real experience.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <p class="section-label">What people say</p>
+  <h2 class="reveal">Words from clients</h2>
+  <div class="testimonials-grid">
+    <blockquote class="reveal">
+      <p>"You made us realise how much an expert perspective can add. We were suddenly having better conversations about almost everything because of what you brought."</p>
+      <span class="quote-attr">— Name, Organisation</span>
+    </blockquote>
+    <blockquote class="reveal">
+      <p>"Working together was such a positive experience. Fantastic at leading workshops, simplifying complicated ideas, and making sure you have the right plans in place."</p>
+      <span class="quote-attr">— Name, Organisation</span>
+    </blockquote>
+    <blockquote class="reveal">
+      <p>"You bring skills and perspective we don't have — an external lens that sees connections we can't, and the confidence to ask the direct, difficult questions."</p>
+      <span class="quote-attr">— Name, Organisation</span>
+    </blockquote>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section id="clients" style="background: var(--teal-light);">
+  <p class="section-label">Clients</p>
+  <h2 class="reveal">Organisations I've worked with</h2>
+  <div class="clients-inner">
+    <div class="client-group">
+      <h4>Sector One</h4>
+      <ul>
+        <li>Organisation Name</li>
+        <li>Organisation Name</li>
+        <li>Organisation Name</li>
+        <li>Organisation Name</li>
+        <li>Organisation Name</li>
+      </ul>
+    </div>
+    <div class="client-group">
+      <h4>Sector Two</h4>
+      <ul>
+        <li>Organisation Name</li>
+        <li>Organisation Name</li>
+        <li>Organisation Name</li>
+        <li>Organisation Name</li>
+      </ul>
+    </div>
+    <div class="client-group">
+      <h4>Sector Three</h4>
+      <ul>
+        <li>Organisation Name</li>
+        <li>Organisation Name</li>
+        <li>Organisation Name</li>
+        <li>Organisation Name</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- WRITING -->
+<section class="writing" id="writing">
+  <p class="section-label">Thinking</p>
+  <h2 class="reveal">Latest writing</h2>
+  <div class="posts">
+    <article class="post">
+      <div class="post-img"></div>
+      <p class="post-meta">12 Mar 2026 &nbsp;·&nbsp; Category</p>
+      <h3><a href="#">Your article title goes right here in this space</a></h3>
+      <p>A brief excerpt or description of the article. Two or three sentences to give the reader a sense of what they'll find.</p>
+    </article>
+    <article class="post">
+      <div class="post-img"></div>
+      <p class="post-meta">20 Feb 2026 &nbsp;·&nbsp; Category</p>
+      <h3><a href="#">Another interesting article about your area of expertise</a></h3>
+      <p>A brief excerpt or description of the article. Two or three sentences to give the reader a sense of what they'll find.</p>
+    </article>
+    <article class="post">
+      <div class="post-img"></div>
+      <p class="post-meta">16 Jan 2026 &nbsp;·&nbsp; Category</p>
+      <h3><a href="#">A third article title that rounds out the latest thinking</a></h3>
+      <p>A brief excerpt or description of the article. Two or three sentences to give the reader a sense of what they'll find.</p>
+    </article>
+  </div>
+</section>
+
+<!-- WORKSHOPS -->
+<section class="workshops" id="workshops">
+  <div class="workshops-intro">
+    <p class="section-label">Workshops</p>
+    <h2>Learn with me</h2>
+    <p>Practical, focused workshops for teams and individuals. Small groups, real work, tangible outcomes. Book a place below — all sessions run via video call unless stated otherwise.</p>
+  </div>
+  <div class="workshop-cards">
+    <div class="workshop-card">
+      <span class="workshop-tag">Half day · Online</span>
+      <h3>Workshop Title One</h3>
+      <p>A short description of what this workshop covers, who it's for, and what people will leave with. Keep it specific and outcomes-focused.</p>
+      <p class="workshop-meta">£XXX per person &nbsp;·&nbsp; Max 8 places</p>
+    </div>
+    <div class="workshop-card">
+      <span class="workshop-tag">Full day · Online</span>
+      <h3>Workshop Title Two</h3>
+      <p>A short description of what this workshop covers, who it's for, and what people will leave with. Keep it specific and outcomes-focused.</p>
+      <p class="workshop-meta">£XXX per person &nbsp;·&nbsp; Max 6 places</p>
+    </div>
+    <div class="workshop-card">
+      <span class="workshop-tag">Bespoke · In person or online</span>
+      <h3>Custom Team Workshop</h3>
+      <p>Got a specific challenge? I run bespoke workshops tailored to your team's needs. Get in touch to talk through what you're looking for.</p>
+      <p class="workshop-meta">Price on application</p>
+    </div>
+  </div>
+  <!-- ↓ Replace this block with your Cal.com embed snippet
+       cal.com → your event → Embed → Inline → copy and paste the code here -->
+  <div class="embed-placeholder-block">
+    <div class="ep-icon">📅</div>
+    <h4>Booking calendar goes here</h4>
+    <p>Sign up at Cal.com, create your event types, then paste your embed snippet here to replace this block.</p>
+    <code>cal.com → your event → Embed → Inline → paste here</code>
+  </div>
+  <!-- ↑ End Cal.com embed -->
+</section>
+
+<!-- RESOURCES -->
+<section class="resources" id="resources">
+  <div class="resources-intro">
+    <p class="section-label">Resources</p>
+    <h2>Templates &amp; toolkits</h2>
+    <p>Tried-and-tested tools you can put to work straight away. Built from real projects, designed to save you time and help you think more clearly.</p>
+  </div>
+  <div class="resource-cards">
+    <div class="resource-card">
+      <span class="resource-type">Free · PDF guide</span>
+      <h3>Resource Title One</h3>
+      <p>A description of what's inside this resource and who it's most useful for. What problem does it solve?</p>
+      <div class="resource-price">
+        <span>Free</span>
+        <!-- Replace href with your Gumroad product link -->
+        <a href="https://gumroad.com" class="btn-small" target="_blank">Download →</a>
+      </div>
+    </div>
+    <div class="resource-card">
+      <span class="resource-type">Paid · Spreadsheet template</span>
+      <h3>Resource Title Two</h3>
+      <p>A description of what's inside this resource and who it's most useful for. What problem does it solve?</p>
+      <div class="resource-price">
+        <span>£XX</span>
+        <!-- Replace href with your Gumroad product link -->
+        <a href="https://gumroad.com" class="btn-small" target="_blank">Buy →</a>
+      </div>
+    </div>
+    <div class="resource-card">
+      <span class="resource-type">Paid · Workshop slides + notes</span>
+      <h3>Resource Title Three</h3>
+      <p>A description of what's inside this resource and who it's most useful for. What problem does it solve?</p>
+      <div class="resource-price">
+        <span>£XX</span>
+        <!-- Replace href with your Gumroad product link -->
+        <a href="https://gumroad.com" class="btn-small" target="_blank">Buy →</a>
+      </div>
+    </div>
+  </div>
+  <!-- ↓ Optional: replace this with your Gumroad store embed
+       gumroad.com → profile → Share → Embed → paste the script tag here -->
+  <div class="embed-placeholder-block">
+    <div class="ep-icon">🛒</div>
+    <h4>Gumroad store widget (optional)</h4>
+    <p>Embed your full Gumroad store here, or just use the individual Buy links on the cards above.</p>
+    <code>gumroad.com → profile → Share → Embed → paste here</code>
+  </div>
+  <!-- ↑ End Gumroad embed -->
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter" id="contact">
+  <p class="section-label">Stay in touch</p>
+  <h2>A monthly email worth reading</h2>
+  <p>Curated links, ideas, and occasional opinions for people who care about doing good work. No noise. Just things worth your time.</p>
+  <!-- ↓ Replace the form below with your Mailchimp or Kit embed snippet
+       Mailchimp: Audience → Signup forms → Embedded forms → copy HTML
+       Kit: Grow → Forms → your form → Embed → HTML → copy and paste here -->
+  <div class="newsletter-form">
+    <input type="email" placeholder="Your email address" />
+    <button type="button">Subscribe</button>
+  </div>
+  <p class="embed-note">Replace the form above with your Mailchimp or Kit embed snippet.</p>
+  <!-- ↑ End newsletter embed -->
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">Your Name</a>
+  <ul class="footer-links">
+    <li><a href="#services">What I do</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#workshops">Workshops</a></li>
+    <li><a href="#resources">Resources</a></li>
+    <li><a href="#writing">Writing</a></li>
+    <li><a href="/cdn-cgi/l/email-protection#522b3d27122b3d2720213b26377c313d3f">Get in touch</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 Your Name. All rights reserved.</p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        obse
